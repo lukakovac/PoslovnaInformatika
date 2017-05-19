@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using PoslovnaInformatika.Data;
 
 namespace PoslovnaInformatika
 {
@@ -27,6 +29,11 @@ namespace PoslovnaInformatika
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<PoslovnaInformatikaContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            //services.AddSingleton<IDataRepository, A class implementing IDataRepository>();
+
             // Add framework services.
             services.AddMvc();
         }
