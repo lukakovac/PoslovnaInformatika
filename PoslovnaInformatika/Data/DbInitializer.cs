@@ -7,5 +7,9 @@ namespace PoslovnaInformatika.Data
 {
     public class DbInitializer
     {
+        public static void Initialize(ApplicationContext context)
+        {
+            context.Database.EnsureCreated();
+        }
     }
 }
